@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasan Zengin iOS Apps</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff; /* Bootstrap primary */
+            --secondary-color: #6c757d; /* Bootstrap secondary */
+            --accent-color: #ffc107; /* A nice contrasting accent color (gold) */
+            --background-color: #f8f9fa;
+            --card-bg-color: #ffffff;
+            --text-color: #212529;
+            --text-color-light: #495057;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Hero Section --- */
+        .jumbotron {
+            background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            color: white;
+            padding: 8rem 2rem; /* Even more padding */
+            text-align: center;
+            margin-bottom: 0;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jumbotron::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+            z-index: 1;
+        }
+
+        .jumbotron > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .jumbotron h1 {
+            font-size: 4.5rem; /* Even larger heading */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .jumbotron p {
+            font-size: 1.6rem; /* Larger paragraph */
+            margin-bottom: 3rem;
+            max-width: 900px; /* Wider limit */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .jumbotron .btn-explore {
+            background-color: var(--accent-color); /* Use accent color */
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            padding: 0.8rem 2.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 50px; /* Fully rounded button */
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Button shadow */
+        }
+
+        .jumbotron .btn-explore:hover {
+            background-color: transparent; /* Transparent on hover */
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- App Cards --- */
+        .app-card {
+            border: none;
+            border-radius: 25px; /* More rounded */
+            box-shadow: 0 10px 20px var(--shadow-color);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            overflow: hidden;
+            background-color: var(--card-bg-color);
+            margin-bottom: 3rem; /* More bottom margin */
+        }
+
+        .app-card:hover {
+            transform: translateY(-12px) scale(1.03); /* Lift and scale */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .app-card img {
+            width: 100%;
+            height: 280px; /* Adjusted height */
+            object-fit: cover;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+
+        .app-card .card-body {
+            padding: 2.5rem;
+        }
+
+        .app-card .card-title {
+            font-size: 1.9rem; /* Larger title */
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .app-card .card-text {
+            color: var(--text-color-light);
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+
+        .btn-download {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            padding: 0.7rem 2rem;
+            border-radius: 10px; /* More rounded */
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 500;
+        }
+
+        .btn-download:hover {
+            background-color: darken(var(--primary-color), 10%); /* Darken on hover */
+            border-color: darken(var(--primary-color), 10%);
+            transform: scale(1.07);
+        }
+
+        .btn-download i {
+            font-size: 1.3rem;
+        }
+
+        /* --- Features Section --- */
+        .features-section {
+            padding: 5rem 0;
+            background-color: #f2f2f2; /* Light gray background */
+             /* Add a subtle pattern background */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83-1.41 1.41L38.59 40H40v-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .feature-item {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-item i {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+         /* Hover effect for feature icons */
+        .feature-item:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1); /*Slightly bigger*/
+        }
+
+        .feature-item h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            color: var(--secondary-color);
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials-section {
+            padding: 5rem 0;
+            background-color: var(--background-color); /* Use main background */
+        }
+
+        .testimonial-item {
+            text-align: center;
+            padding: 2.5rem;
+            border: 1px solid #dee2e6;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            background-color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;  /* Smooth shadow transition */
+        }
+          /* Hover effect for testimonials */
+        .testimonial-item:hover {
+             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .testimonial-item p {
+            font-style: italic;
+            color: var(--text-color-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-item .author {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 3rem 0; /* More padding */
+            background-color: #343a40;
+            color: white;
+        }
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            gap: 1rem; /* Spacing between elements */
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.7rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 0.7rem;
+            font-size: 1.7rem;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+        /* --- Scroll-to-Top Button --- */
+        #scrollToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none; /* Hidden by default */
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%; /* Circular button */
+            padding: 12px 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it's on top */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            opacity: 0.8; /* Slightly transparent */
+
+        }
+        #scrollToTop:hover{
+            background-color: darken(var(--primary-color), 10%);
+            opacity: 1; /* Fully opaque on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <div class="jumbotron">
+        <h1>Discover My Amazing iOS Apps</h1>
+        <p>Enhance your productivity, creativity, and entertainment with our beautifully designed iOS apps. We focus on
+            user experience and delivering high-quality, reliable software.</p>
+        <a href="#apps" class="btn btn-explore">Explore Apps</a>
+    </div>
+
+    <!-- App Showcase -->
+    <div class="container" id="apps">
+        <div class="row">
+            <!-- App 1 -->
+            <div class="col-md-4">
+                <div class="app-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Productivity Pro - Task Management App">
+                    <div class="card-body">
+                        <h5 class="card-title">Productivity Pro</h5>
+                        <p class="card-text">The ultimate task manager to streamline your workflow. Features include
+                            customizable lists, due dates, reminders, and collaboration tools.</p>
+                        <a href="#" class="btn btn-download">
+                            <i class="fab fa-app-store-ios"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App 2 -->
+            <div class="col-md-4">
+                <div class="app-card">
+                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Creative Canvas - Digital Art App">
+                    <div class="card-body">
+                        <h5 class="card-title">Creative Canvas</h5>
+                        <p class="card-text">Unleash your inner artist. Offers a wide range of brushes, layers, and
+                            color palettes. Supports Apple Pencil.</p>
+                        <a href="#" class="btn btn-download">
+                            <i class="fab fa-app-store-ios"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App 3 -->
+            <div class="col-md-4">
+                <div class="app-card">
+                    <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Zenith Explorer - Music Discovery App">
+                    <div class="card-body">
+                        <h5 class="card-title">Zenith Explorer</h5>
+                        <p class="card-text">Discover new music and enjoy your favorites. Personalized recommendations,
+                            curated playlists, and high-quality audio.</p>
+                        <a href="#" class="btn btn-download">
+                            <i class="fab fa-app-store-ios"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <i class="fas fa-user-check"></i>
+                        <h3>User-Friendly Design</h3>
+                        <p>Intuitive interfaces.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <h3>Offline Access</h3>
+                        <p>Access content offline.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Regular Updates</h3>
+                        <p>Continuous improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="text-center mb-5">What Users Say</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-item">
+                        <p>"Productivity Pro has transformed my task management! Intuitive and a productivity booster."
+                        </p>
+                        <p class="author">- John S., Business Owner</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-item">
+                        <p>"Creative Canvas is the best drawing app. Realistic brushes and easy to navigate."</p>
+                        <p class="author">- Maria G., Artist</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-item">
+                        <p>"I've discovered amazing artists through Zenith Explorer. Personalized recommendations are
+                            great!"</p>
+                        <p class="author">- David L., Music Lover</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 My App Company. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll-to-Top Button -->
+    <button id="scrollToTop" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script>
+      // Scroll-to-top button functionality
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("scrollToTop").style.display = "block";
+        } else {
+          document.getElementById("scrollToTop").style.display = "none";
+        }
+      }
+
+      document.getElementById("scrollToTop").addEventListener("click", function(){
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      });
+    </script>
+</body>
+
+</html>
